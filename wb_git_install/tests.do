@@ -1,23 +1,4 @@
-do "git.ado"
 
-local os         = "`c(os)'"
-local adoPlusDir = "`c(sysdir_plus)'"
-if("`os'" != "Windows"){
-    local adoPlusDir = subinstr("`adoPlusDir'","~","/Users/`c(username)'",.)
-}
-local adoDir    = trim(subinstr("`adoPlusDir'","ado/plus/","",.))
-local gitDir    = "`adoDir'git/"
-local copyCmd   = "cp" /* Defaults to *nix command */
-local deleteCmd = "rm" /* Defaults to *nix command */
-local origDir   = "`c(pwd)'"
-local lsCmd     = "ls" /* Defaults to *nix command */
-local rmdirCmd  = "rm -rf" /* Defaults to *nix command */
-if("`os'" == "Windows"){
-    local copyCmd   = "copy"
-    local deleteCmd = "erase"
-    local lsCmd     = "dir"
-    local rmdirCmd  = "rmdir /Q /S"
-}
 
 /*Test installing*/
 git install https://github.com/coderigo/stata-switch
